@@ -3,11 +3,14 @@ const cors = require("cors");
 
 const app = express();
 
-app.use(cors());
-app.use(express.json());   // ⭐ MUST BE THERE
+app.use(cors({
+  origin: "*",
+  methods: ["GET", "POST", "DELETE"]
+}));
 
-const PORT = 5000;
+app.use(express.json());
 
+const PORT = process.env.PORT || 5000;
 /* Fake DB */
 let users = [
   { email: "admin@admin.com", password: "admin", role: "admin" },

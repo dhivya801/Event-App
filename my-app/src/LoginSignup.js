@@ -16,7 +16,8 @@ function LoginSignup({ onLoginSuccess }) {
 
     try {
       if (isLogin) {
-        const res = await axios.post("http://127.0.0.1:5000/login", {
+        const API_URL = process.env.REACT_APP_API_URL || `http://${window.location.hostname}:5000`;
+        const res = await axios.post(`${API_URL}/login`, {
           email: email,
           password: password,
         });
@@ -32,7 +33,8 @@ function LoginSignup({ onLoginSuccess }) {
           return;
         }
 
-        const res = await axios.post("http://127.0.0.1:5000/signup", {
+        const API_URL = process.env.REACT_APP_API_URL || `http://${window.location.hostname}:5000`;
+        const res = await axios.post(`${API_URL}/signup`, {
           name: name,
           email: email,
           password: password,

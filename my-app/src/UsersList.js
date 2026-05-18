@@ -8,7 +8,8 @@ function UsersList() {
   useEffect(() => {
     const fetchUsers = async () => {
       try {
-        const res = await axios.get("http://127.0.0.1:5000/users");
+        const API_URL = process.env.REACT_APP_API_URL || `http://${window.location.hostname}:5000`;
+        const res = await axios.get(`${API_URL}/users`);
         setUserList(res.data || []);
       } catch (err) {
         console.error("Failed to load users", err);

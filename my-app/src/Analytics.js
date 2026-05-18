@@ -6,7 +6,8 @@ function Analytics({ events = [], tickets = [] }) {
   const [userCount, setUserCount] = useState(0);
 
   useEffect(() => {
-    axios.get("http://127.0.0.1:5000/users")
+    const API_URL = process.env.REACT_APP_API_URL || `http://${window.location.hostname}:5000`;
+    axios.get(`${API_URL}/users`)
       .then(res => setUserCount(res.data.length))
       .catch(() => setUserCount(1));
   }, []);
